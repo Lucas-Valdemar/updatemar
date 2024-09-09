@@ -10,10 +10,10 @@ set "destino=%USERPROFILE%\Zomboid\mods"
 
 :: Baixar o arquivo usando PowerShell
 echo Baixando o arquivo do Google Drive...
-powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile 'mod.zip'"
+powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile 'mods.zip' -UseBasicP"
 
 :: Verificar se o arquivo foi baixado com sucesso
-if not exist "mod.zip" (
+if not exist "mods.zip" (
     echo Falha ao baixar o arquivo. Verifique a URL e tente novamente.
     exit /b 1
 )
@@ -25,10 +25,16 @@ if not exist "%destino%" (
 
 :: Extrair o arquivo
 echo Extraindo os arquivos...
-powershell -Command "Expand-Archive -Path 'mod.zip' -DestinationPath '%destino%' -Force"
+powershell -Command "Expand-Archive -Path 'mods.zip' -DestinationPath '%destino%' -Force"
+
+:: Verificar se a extração foi bem-sucedida
+if not exist "%destino%" (
+    echo Falha ao extrair o arquivo. Verifique o arquivo ZIP e tente novamente.
+    exit /b 1
+)
 
 :: Limpar arquivos temporários
-del mod.zip
+del mods.zip
 
 echo Mod instalado com sucesso!
 pause
