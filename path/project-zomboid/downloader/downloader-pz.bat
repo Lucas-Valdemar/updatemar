@@ -33,8 +33,6 @@ if not exist "%destino%" (
     exit /b 1
 )
 
-:: Limpar arquivos temporários
-del mods.zip
 
 echo Mod instalado com sucesso!
 pause
