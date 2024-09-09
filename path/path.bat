@@ -6,7 +6,7 @@ echo 1. Project Zomboid
 echo 2. Project Zomboid Dedicated Server
 
 REM Leitura da escolha do usuário
-set /p gameChoice="Digite o número do jogo e aperte Enter: "
+set /p gameChoice="Digite o numero do jogo e aperte Enter: "
 
 REM Processando a escolha do usuário
 if "%gameChoice%"=="1" (
@@ -28,7 +28,7 @@ if "%gameChoice%"=="1" (
         echo Falha ao baixar init-pzds.bat.
     )
 ) else (
-    echo Escolha inválida. Por favor, execute o script novamente e escolha uma opção válida.
+    echo Escolha invalida. Por favor, execute o script novamente e escolha uma opcao valida.
     exit /b
 )
 

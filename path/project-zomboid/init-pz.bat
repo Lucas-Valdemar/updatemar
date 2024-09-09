@@ -1,12 +1,12 @@
 @echo off
 REM Escolha entre instalar os mods ou fazer Backup
 echo.
-echo Selecione uma opção:
+echo Selecione uma opcao:
 echo 1. Instalar os mods
 echo 2. Fazer Backup da pasta mods
 
 REM Leitura da escolha do usuário
-set /p gameChoice="Digite um número e aperte Enter: "
+set /p gameChoice="Digite um numero e aperte Enter: "
 
 REM Processando a escolha do usuário
 if "%gameChoice%"=="1" (
@@ -28,7 +28,7 @@ if "%gameChoice%"=="1" (
         echo Falha ao baixar backup-pz.bat.
     )
 ) else (
-    echo Escolha inválida. Por favor, execute o script novamente e escolha uma opção válida.
+    echo Escolha invalida. Por favor, execute o script novamente e escolha uma opcao valida.
     exit /b
 )
 
