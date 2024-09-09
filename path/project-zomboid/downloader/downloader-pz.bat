@@ -10,11 +10,13 @@ set "destino=%USERPROFILE%\Zomboid\mods"
 
 :: Baixar o arquivo usando PowerShell
 echo Baixando o arquivo do Google Drive...
+powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile 'mod.zip'"
 
-:: Usa o PowerShell para lidar com o processo de download e confirmação
-powershell -command ^
-    "$client = new-object System.Net.WebClient; ^ 
-    $client.DownloadFile('https://drive.google.com/uc?export=download&id=%fileId%','mod.zip')"
+:: Verificar se o arquivo foi baixado com sucesso
+if not exist "mod.zip" (
+    echo Falha ao baixar o arquivo. Verifique a URL e tente novamente.
+    exit /b 1
+)
 
 :: Criar a pasta de destino, caso não exista
 if not exist "%destino%" (
@@ -23,7 +25,7 @@ if not exist "%destino%" (
 
 :: Extrair o arquivo
 echo Extraindo os arquivos...
-powershell -command "Expand-Archive mod.zip -DestinationPath %destino% -Force"
+powershell -Command "Expand-Archive -Path 'mod.zip' -DestinationPath '%destino%' -Force"
 
 :: Limpar arquivos temporários
 del mod.zip
