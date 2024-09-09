@@ -1,15 +1,14 @@
 @echo off
 setlocal
 
-:: URL do arquivo no Google Drive (com o ID do arquivo)
-set "fileId=1yxFTv09-C2sGKsfLggHj3LXenGmGlMF0"
-set "url=https://drive.google.com/uc?export=download&id=%fileId%"
+:: URL do arquivo no OneDrive (convertido para link de download direto)
+set "url=https://api.onedrive.com/v1.0/shares/s!AnnI_h58OjVc1mgmOASroeVKSNfd/root/content"
 
 :: Caminho de destino para os mods
 set "destino=%USERPROFILE%\Zomboid\mods"
 
 :: Baixar o arquivo usando PowerShell
-echo Baixando o arquivo do Google Drive...
+echo Baixando o arquivo do OneDrive...
 powershell -Command "Invoke-WebRequest -Uri '%url%' -OutFile 'mods.zip' -UseBasicP"
 
 :: Verificar se o arquivo foi baixado com sucesso
@@ -33,6 +32,8 @@ if not exist "%destino%" (
     exit /b 1
 )
 
+:: Limpar arquivos temporários
+del mods.zip
 
 echo Mod instalado com sucesso!
 pause
