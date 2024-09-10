@@ -25,3 +25,4 @@ echo Backup concluído. Todos os arquivos e pastas foram movidos para "%destDir%
 
 endlocal
 pause
+exit /b
