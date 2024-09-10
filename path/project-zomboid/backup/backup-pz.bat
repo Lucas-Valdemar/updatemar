@@ -14,13 +14,14 @@ if not exist "%destDir%" (
 )
 
 :: Move todos os arquivos e subpastas da pasta de origem para a pasta de destino
-xcopy "%sourceDir%\*" "%destDir%" /E /I /H /R /Y
+for /d %%D in ("%sourceDir%\*") do move "%%D" "%destDir%\"
+for %%F in ("%sourceDir%\*") do move "%%F" "%destDir%"
 
-:: Remove a pasta de origem após mover todos os arquivos
-rd /S /Q "%sourceDir%"
+:: Exclui os arquivos e pastas vazias que podem permanecer na pasta de origem
+for /f "delims=" %%D in ('dir /ad /b "%sourceDir%"') do rd "%sourceDir%\%%D"
 
 :: Exibe uma mensagem de conclusão
-echo Backup concluído. Todos os arquivos e pastas foram movidos para "%destDir%".
+echo Backup concluído. Todos os arquivos e pastas foram movidos para "%destDir%". A pasta de origem foi deixada vazia.
 
 endlocal
 pause
