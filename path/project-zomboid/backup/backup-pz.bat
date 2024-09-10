@@ -13,11 +13,14 @@ if not exist "%destDir%" (
     mkdir "%destDir%"
 )
 
-:: Move os arquivos da pasta de origem para a pasta de destino
-move "%sourceDir%\*" "%destDir%"
+:: Move todos os arquivos e subpastas da pasta de origem para a pasta de destino
+xcopy "%sourceDir%\*" "%destDir%" /E /I /H /R /Y
+
+:: Remove a pasta de origem após mover todos os arquivos
+rd /S /Q "%sourceDir%"
 
 :: Exibe uma mensagem de conclusão
-echo Backup concluído. Os arquivos foram movidos para "%destDir%".
+echo Backup concluído. Todos os arquivos e pastas foram movidos para "%destDir%".
 
 endlocal
 pause
